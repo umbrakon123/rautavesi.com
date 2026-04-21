@@ -1,79 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rautavesi.com - Status</title>
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: #d4d4d4;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .container {
-            border: 2px dashed #444;
-            padding: 40px;
-            max-width: 600px;
-        }
-        h1 {
-            font-size: 1.5em;
-            color: #ffca28;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .ascii-art {
-            font-size: 8px;
-            line-height: 10px;
-            margin: 20px 0;
-            color: #555;
-            white-space: pre;
-            display: inline-block;
-            text-align: left;
-        }
-        p {
-            margin: 15px 0;
-            line-height: 1.6;
-        }
-        .footer {
-            margin-top: 30px;
-            font-size: 0.8em;
-            color: #666;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rautavesi.com</title>
+  <style>
+    :root {
+      --bg: #080808;
+      --panel: #0e0c0b;
+      --text: #e8dfcf;
+      --muted: #8a7d6b;
+      --line: rgba(232, 223, 207, 0.11);
+      --line-soft: rgba(232, 223, 207, 0.05);
+      --gold: #b08a49;
+      --gold-soft: rgba(176, 138, 73, 0.14);
+      --shadow: rgba(0, 0, 0, 0.62);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 50% 16%, rgba(176, 138, 73, 0.045), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(255,255,255,0.018), transparent 36%),
+        linear-gradient(to bottom, #090807, #060606 65%);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .frame {
+      position: relative;
+      width: min(940px, 100%);
+      min-height: 660px;
+      padding: 52px 48px 40px;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.01), rgba(255,255,255,0.003)),
+        linear-gradient(to bottom right, rgba(176,138,73,0.018), transparent 35%),
+        var(--panel);
+      border: 1px solid var(--line);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.015) inset,
+        0 40px 120px var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .frame::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid var(--line-soft);
+      pointer-events: none;
+    }
+
+    .frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 56%, rgba(0,0,0,0.16) 100%);
+      pointer-events: none;
+    }
+
+    .ornament-top {
+      display: flex;
+      justify-content: center;
+      margin-top: 2px;
+      margin-bottom: 8px;
+      opacity: 0.96;
+    }
+
+    .crest {
+      width: 210px;
+      height: 146px;
+      filter: drop-shadow(0 0 14px rgba(176, 138, 73, 0.10));
+    }
+
+    .crest path,
+    .crest circle,
+    .crest ellipse,
+    .crest line {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .crest .gold {
+      stroke: rgba(176, 138, 73, 0.95);
+      stroke-width: 1.35;
+    }
+
+    .crest .soft {
+      stroke: rgba(232, 223, 207, 0.28);
+      stroke-width: 1.05;
+    }
+
+    .crest .fine {
+      stroke: rgba(232, 223, 207, 0.16);
+      stroke-width: 0.9;
+    }
+
+    .content {
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-top: -10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      text-transform: lowercase;
+      color: var(--text);
+    }
+
+    .rule {
+      width: 110px;
+      height: 18px;
+      margin: 16px 0 18px;
+      position: relative;
+      opacity: 0.9;
+    }
+
+    .rule::before,
+    .rule::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+
+    .rule::before {
+      left: 0;
+    }
+
+    .rule::after {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    .rule span {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      color: var(--gold);
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: clamp(1.04rem, 1.55vw, 1.22rem);
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .lead span {
+      display: block;
+    }
+
+    .footer {
+      position: absolute;
+      left: 48px;
+      right: 48px;
+      bottom: 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.85;
+    }
+
+    .corner {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
+    .corner::before,
+    .corner::after {
+      content: "";
+      position: absolute;
+      background: var(--gold);
+      opacity: 0.42;
+    }
+
+    .corner::before {
+      width: 28px;
+      height: 1px;
+    }
+
+    .corner::after {
+      width: 1px;
+      height: 28px;
+    }
+
+    .corner.tl { top: 14px; left: 14px; }
+    .corner.tl::before { top: 0; left: 0; }
+    .corner.tl::after { top: 0; left: 0; }
+
+    .corner.tr { top: 14px; right: 14px; transform: scaleX(-1); }
+    .corner.tr::before { top: 0; left: 0; }
+    .corner.tr::after { top: 0; left: 0; }
+
+    .corner.bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+    .corner.bl::before { top: 0; left: 0; }
+    .corner.bl::after { top: 0; left: 0; }
+
+    .corner.br { bottom: 14px; right: 14px; transform: scale(-1); }
+    .corner.br::before { top: 0; left: 0; }
+    .corner.br::after { top: 0; left: 0; }
+
+    @media (max-width: 640px) {
+      .frame {
+        min-height: auto;
+        padding: 38px 22px 72px;
+      }
+
+      .frame::before {
+        inset: 10px;
+      }
+
+      .ornament-top {
+        margin-bottom: 2px;
+      }
+
+      .crest {
+        width: 168px;
+        height: 118px;
+      }
+
+      .content {
+        margin-top: -6px;
+      }
+
+      .footer {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+      }
+    }
+  </style>
 </head>
 <body>
+  <main class="frame" aria-label="Private domain placeholder">
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
 
-<div class="container">
-    <h1>ETERNAL PROJECT v0.1</h1>
-    
-    <div class="ascii-art">
-               _
-             _( )_
-            (_(%)_)
-               | |
-    _____      | |      _____
-   /     \____/   \____/     \
-  |  [ ]  ____  (%)  ____  [ ] |
-   \_____/    \___/    \_____/
-               | |
-          ____/   \____
-         /_____________ \
+    <div class="ornament-top" aria-hidden="true">
+      <svg class="crest" viewBox="0 0 240 170" role="img">
+        <!-- outer ring / seal -->
+        <ellipse class="fine" cx="120" cy="78" rx="78" ry="54" />
+        <ellipse class="soft" cx="120" cy="78" rx="62" ry="42" />
+
+        <!-- top crown -->
+        <path class="soft" d="M98 28 L108 18 L120 28 L132 18 L142 28" />
+        <path class="gold" d="M101 31 H139" />
+
+        <!-- side laurels -->
+        <path class="fine" d="M66 58 C54 68, 49 82, 51 98 C53 111, 60 122, 72 130" />
+        <path class="fine" d="M174 58 C186 68, 191 82, 189 98 C187 111, 180 122, 168 130" />
+
+        <path class="soft" d="M68 67 L58 73 M72 78 L60 86 M75 90 L62 99 M80 102 L67 112 M87 114 L75 125" />
+        <path class="soft" d="M172 67 L182 73 M168 78 L180 86 M165 90 L178 99 M160 102 L173 112 M153 114 L165 125" />
+
+        <!-- central shield -->
+        <path class="soft" d="M120 42
+                              C134 50, 148 52, 160 54
+                              C156 72, 152 88, 152 102
+                              C152 124, 140 138, 120 146
+                              C100 138, 88 124, 88 102
+                              C88 88, 84 72, 80 54
+                              C92 52, 106 50, 120 42 Z" />
+
+        <!-- shield inner ornament -->
+        <path class="gold" d="M120 58 L129 78 L151 80 L134 95 L139 117 L120 106 L101 117 L106 95 L89 80 L111 78 Z" />
+        <circle class="gold" cx="120" cy="92" r="9" />
+        <circle class="soft" cx="120" cy="92" r="18" />
+
+        <!-- lower flourish -->
+        <path class="soft" d="M98 146 C105 152, 112 155, 120 155 C128 155, 135 152, 142 146" />
+        <path class="fine" d="M86 150 C97 160, 108 164, 120 164 C132 164, 143 160, 154 150" />
+
+        <!-- side dividers -->
+        <line class="fine" x1="28" y1="78" x2="46" y2="78" />
+        <line class="fine" x1="194" y1="78" x2="212" y2="78" />
+      </svg>
     </div>
 
-    <p><strong>rautavesi.com</strong></p>
-    <p>This domain is reserved for private email use only.</p>
-    <p>There is no website here, and none is expected in the foreseeable future. Construction has halted indefinitely due to a total lack of resources and a general lack of interest.</p>
-    
-    <div class="footer">
-        © 2026 – Personal, non-commercial use only.
-    </div>
-</div>
+    <section class="content">
+      <h1>rautavesi.com</h1>
 
+      <div class="rule" aria-hidden="true">
+        <span>✦</span>
+      </div>
+
+      <p class="lead">
+        <span>No public presence.</span>
+        <span>Reserved for private correspondence.</span>
+      </p>
+    </section>
+
+    <div class="footer">sealed archive · 2026</div>
+  </main>
 </body>
 </html>
