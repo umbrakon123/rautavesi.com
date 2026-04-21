@@ -6,14 +6,14 @@
   <title>rautavesi.com</title>
   <style>
     :root {
-      --bg: #080808;
-      --panel: #0e0c0b;
-      --text: #e8dfcf;
-      --muted: #8a7d6b;
-      --line: rgba(232, 223, 207, 0.11);
-      --line-soft: rgba(232, 223, 207, 0.05);
-      --gold: #b08a49;
-      --gold-soft: rgba(176, 138, 73, 0.14);
+      --bg: #070707;
+      --panel: #0d0c0b;
+      --text: #e7dece;
+      --muted: #8a7d6d;
+      --line: rgba(231, 222, 206, 0.10);
+      --line-soft: rgba(231, 222, 206, 0.045);
+      --gold: #a88449;
+      --gold-soft: rgba(168, 132, 73, 0.12);
       --shadow: rgba(0, 0, 0, 0.62);
     }
 
@@ -26,9 +26,9 @@
       margin: 0;
       min-height: 100%;
       background:
-        radial-gradient(circle at 50% 16%, rgba(176, 138, 73, 0.045), transparent 26%),
-        radial-gradient(circle at 50% 100%, rgba(255,255,255,0.018), transparent 36%),
-        linear-gradient(to bottom, #090807, #060606 65%);
+        radial-gradient(circle at 50% 14%, rgba(168, 132, 73, 0.035), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255,255,255,0.015), transparent 34%),
+        linear-gradient(to bottom, #090807, #060606 68%);
       color: var(--text);
       font-family: Georgia, "Times New Roman", serif;
     }
@@ -46,12 +46,12 @@
       min-height: 660px;
       padding: 52px 48px 40px;
       background:
-        linear-gradient(to bottom, rgba(255,255,255,0.01), rgba(255,255,255,0.003)),
-        linear-gradient(to bottom right, rgba(176,138,73,0.018), transparent 35%),
+        linear-gradient(to bottom, rgba(255,255,255,0.008), rgba(255,255,255,0.002)),
+        linear-gradient(to bottom right, rgba(168,132,73,0.015), transparent 35%),
         var(--panel);
       border: 1px solid var(--line);
       box-shadow:
-        0 0 0 1px rgba(255,255,255,0.015) inset,
+        0 0 0 1px rgba(255,255,255,0.012) inset,
         0 40px 120px var(--shadow);
       overflow: hidden;
       isolation: isolate;
@@ -69,28 +69,65 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, transparent 56%, rgba(0,0,0,0.16) 100%);
+      background: radial-gradient(circle at center, transparent 58%, rgba(0,0,0,0.14) 100%);
       pointer-events: none;
     }
+
+    .corner {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .corner::before,
+    .corner::after {
+      content: "";
+      position: absolute;
+      background: rgba(168, 132, 73, 0.34);
+    }
+
+    .corner::before {
+      width: 26px;
+      height: 1px;
+    }
+
+    .corner::after {
+      width: 1px;
+      height: 26px;
+    }
+
+    .corner.tl { top: 14px; left: 14px; }
+    .corner.tl::before, .corner.tl::after { top: 0; left: 0; }
+
+    .corner.tr { top: 14px; right: 14px; transform: scaleX(-1); }
+    .corner.tr::before, .corner.tr::after { top: 0; left: 0; }
+
+    .corner.bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+    .corner.bl::before, .corner.bl::after { top: 0; left: 0; }
+
+    .corner.br { bottom: 14px; right: 14px; transform: scale(-1); }
+    .corner.br::before, .corner.br::after { top: 0; left: 0; }
 
     .ornament-top {
       display: flex;
       justify-content: center;
       margin-top: 2px;
-      margin-bottom: 8px;
-      opacity: 0.96;
+      margin-bottom: 2px;
+      opacity: 0.9;
     }
 
     .crest {
-      width: 210px;
-      height: 146px;
-      filter: drop-shadow(0 0 14px rgba(176, 138, 73, 0.10));
+      width: 180px;
+      height: 104px;
+      filter: drop-shadow(0 0 10px rgba(168, 132, 73, 0.06));
     }
 
     .crest path,
-    .crest circle,
     .crest ellipse,
-    .crest line {
+    .crest line,
+    .crest circle {
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -98,22 +135,22 @@
     }
 
     .crest .gold {
-      stroke: rgba(176, 138, 73, 0.95);
-      stroke-width: 1.35;
-    }
-
-    .crest .soft {
-      stroke: rgba(232, 223, 207, 0.28);
+      stroke: rgba(168, 132, 73, 0.82);
       stroke-width: 1.05;
     }
 
+    .crest .soft {
+      stroke: rgba(231, 222, 206, 0.22);
+      stroke-width: 0.95;
+    }
+
     .crest .fine {
-      stroke: rgba(232, 223, 207, 0.16);
-      stroke-width: 0.9;
+      stroke: rgba(231, 222, 206, 0.13);
+      stroke-width: 0.85;
     }
 
     .content {
-      min-height: 380px;
+      min-height: 390px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -121,12 +158,12 @@
       text-align: center;
       position: relative;
       z-index: 1;
-      margin-top: -10px;
+      margin-top: -8px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-size: clamp(2.2rem, 4vw, 3.45rem);
       font-weight: 500;
       letter-spacing: 0.11em;
       text-transform: lowercase;
@@ -134,11 +171,11 @@
     }
 
     .rule {
-      width: 110px;
+      width: 116px;
       height: 18px;
-      margin: 16px 0 18px;
+      margin: 14px 0 18px;
       position: relative;
-      opacity: 0.9;
+      opacity: 0.88;
     }
 
     .rule::before,
@@ -146,9 +183,9 @@
       content: "";
       position: absolute;
       top: 8px;
-      width: 44px;
+      width: 48px;
       height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold));
+      background: linear-gradient(to right, transparent, rgba(168, 132, 73, 0.8));
     }
 
     .rule::before {
@@ -165,14 +202,14 @@
       left: 50%;
       top: 0;
       transform: translateX(-50%);
-      color: var(--gold);
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
+      color: rgba(168, 132, 73, 0.88);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
     }
 
     .lead {
       margin: 0;
-      font-size: clamp(1.04rem, 1.55vw, 1.22rem);
+      font-size: clamp(1.02rem, 1.55vw, 1.2rem);
       line-height: 1.8;
       color: var(--text);
     }
@@ -187,54 +224,12 @@
       right: 48px;
       bottom: 24px;
       text-align: center;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
-      opacity: 0.85;
+      opacity: 0.8;
     }
-
-    .corner {
-      position: absolute;
-      width: 42px;
-      height: 42px;
-      pointer-events: none;
-      opacity: 0.95;
-    }
-
-    .corner::before,
-    .corner::after {
-      content: "";
-      position: absolute;
-      background: var(--gold);
-      opacity: 0.42;
-    }
-
-    .corner::before {
-      width: 28px;
-      height: 1px;
-    }
-
-    .corner::after {
-      width: 1px;
-      height: 28px;
-    }
-
-    .corner.tl { top: 14px; left: 14px; }
-    .corner.tl::before { top: 0; left: 0; }
-    .corner.tl::after { top: 0; left: 0; }
-
-    .corner.tr { top: 14px; right: 14px; transform: scaleX(-1); }
-    .corner.tr::before { top: 0; left: 0; }
-    .corner.tr::after { top: 0; left: 0; }
-
-    .corner.bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
-    .corner.bl::before { top: 0; left: 0; }
-    .corner.bl::after { top: 0; left: 0; }
-
-    .corner.br { bottom: 14px; right: 14px; transform: scale(-1); }
-    .corner.br::before { top: 0; left: 0; }
-    .corner.br::after { top: 0; left: 0; }
 
     @media (max-width: 640px) {
       .frame {
@@ -246,25 +241,21 @@
         inset: 10px;
       }
 
-      .ornament-top {
-        margin-bottom: 2px;
-      }
-
       .crest {
-        width: 168px;
-        height: 118px;
+        width: 148px;
+        height: 86px;
       }
 
       .content {
-        margin-top: -6px;
+        margin-top: -4px;
       }
 
       .footer {
         left: 18px;
         right: 18px;
         bottom: 18px;
-        font-size: 0.72rem;
-        letter-spacing: 0.12em;
+        font-size: 0.71rem;
+        letter-spacing: 0.11em;
       }
     }
   </style>
@@ -277,43 +268,34 @@
     <span class="corner br"></span>
 
     <div class="ornament-top" aria-hidden="true">
-      <svg class="crest" viewBox="0 0 240 170" role="img">
-        <!-- outer ring / seal -->
-        <ellipse class="fine" cx="120" cy="78" rx="78" ry="54" />
-        <ellipse class="soft" cx="120" cy="78" rx="62" ry="42" />
+      <svg class="crest" viewBox="0 0 220 120" role="img">
+        <!-- outer composition -->
+        <line class="fine" x1="24" y1="56" x2="72" y2="56" />
+        <line class="fine" x1="148" y1="56" x2="196" y2="56" />
 
-        <!-- top crown -->
-        <path class="soft" d="M98 28 L108 18 L120 28 L132 18 L142 28" />
-        <path class="gold" d="M101 31 H139" />
+        <!-- small laurel-like curves -->
+        <path class="fine" d="M74 48 C64 52, 58 60, 58 70 C58 79, 63 87, 71 92" />
+        <path class="fine" d="M146 48 C156 52, 162 60, 162 70 C162 79, 157 87, 149 92" />
 
-        <!-- side laurels -->
-        <path class="fine" d="M66 58 C54 68, 49 82, 51 98 C53 111, 60 122, 72 130" />
-        <path class="fine" d="M174 58 C186 68, 191 82, 189 98 C187 111, 180 122, 168 130" />
+        <!-- main seal -->
+        <ellipse class="soft" cx="110" cy="56" rx="38" ry="26" />
+        <ellipse class="fine" cx="110" cy="56" rx="50" ry="35" />
 
-        <path class="soft" d="M68 67 L58 73 M72 78 L60 86 M75 90 L62 99 M80 102 L67 112 M87 114 L75 125" />
-        <path class="soft" d="M172 67 L182 73 M168 78 L180 86 M165 90 L178 99 M160 102 L173 112 M153 114 L165 125" />
+        <!-- heraldic shield -->
+        <path class="soft" d="M110 36
+                              C118 41, 127 43, 135 44
+                              C132 56, 130 66, 130 74
+                              C130 87, 123 96, 110 101
+                              C97 96, 90 87, 90 74
+                              C90 66, 88 56, 85 44
+                              C93 43, 102 41, 110 36 Z" />
 
-        <!-- central shield -->
-        <path class="soft" d="M120 42
-                              C134 50, 148 52, 160 54
-                              C156 72, 152 88, 152 102
-                              C152 124, 140 138, 120 146
-                              C100 138, 88 124, 88 102
-                              C88 88, 84 72, 80 54
-                              C92 52, 106 50, 120 42 Z" />
-
-        <!-- shield inner ornament -->
-        <path class="gold" d="M120 58 L129 78 L151 80 L134 95 L139 117 L120 106 L101 117 L106 95 L89 80 L111 78 Z" />
-        <circle class="gold" cx="120" cy="92" r="9" />
-        <circle class="soft" cx="120" cy="92" r="18" />
+        <!-- subtle center emblem -->
+        <path class="gold" d="M110 47 L115 57 L126 58 L118 65 L120 76 L110 70 L100 76 L102 65 L94 58 L105 57 Z" />
+        <circle class="gold" cx="110" cy="61" r="3.5" />
 
         <!-- lower flourish -->
-        <path class="soft" d="M98 146 C105 152, 112 155, 120 155 C128 155, 135 152, 142 146" />
-        <path class="fine" d="M86 150 C97 160, 108 164, 120 164 C132 164, 143 160, 154 150" />
-
-        <!-- side dividers -->
-        <line class="fine" x1="28" y1="78" x2="46" y2="78" />
-        <line class="fine" x1="194" y1="78" x2="212" y2="78" />
+        <path class="fine" d="M96 98 C100 102, 105 104, 110 104 C115 104, 120 102, 124 98" />
       </svg>
     </div>
 
@@ -330,7 +312,7 @@
       </p>
     </section>
 
-    <div class="footer">sealed archive · 2026</div>
+    <div class="footer">private archive · 2026</div>
   </main>
 </body>
 </html>
