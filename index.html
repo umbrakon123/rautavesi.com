@@ -163,9 +163,9 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(2.2rem, 4vw, 3.45rem);
+      font-size: clamp(2.45rem, 4.5vw, 3.85rem);
       font-weight: 500;
-      letter-spacing: 0.11em;
+      letter-spacing: 0.12em;
       text-transform: lowercase;
       color: var(--text);
     }
@@ -209,8 +209,8 @@
 
     .lead {
       margin: 0;
-      font-size: clamp(1.02rem, 1.55vw, 1.2rem);
-      line-height: 1.8;
+      font-size: clamp(0.98rem, 1.35vw, 1.1rem);
+      line-height: 1.9;
       color: var(--text);
     }
 
@@ -224,11 +224,11 @@
       right: 48px;
       bottom: 24px;
       text-align: center;
-      font-size: 0.76rem;
-      letter-spacing: 0.16em;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      opacity: 0.8;
+      opacity: 0.72;
     }
 
     @media (max-width: 640px) {
@@ -250,11 +250,21 @@
         margin-top: -4px;
       }
 
+      h1 {
+        font-size: clamp(2rem, 9vw, 2.7rem);
+        letter-spacing: 0.1em;
+      }
+
+      .lead {
+        font-size: 0.96rem;
+        line-height: 1.85;
+      }
+
       .footer {
         left: 18px;
         right: 18px;
         bottom: 18px;
-        font-size: 0.71rem;
+        font-size: 0.66rem;
         letter-spacing: 0.11em;
       }
     }
@@ -269,19 +279,15 @@
 
     <div class="ornament-top" aria-hidden="true">
       <svg class="crest" viewBox="0 0 220 120" role="img">
-        <!-- outer composition -->
         <line class="fine" x1="24" y1="56" x2="72" y2="56" />
         <line class="fine" x1="148" y1="56" x2="196" y2="56" />
 
-        <!-- small laurel-like curves -->
         <path class="fine" d="M74 48 C64 52, 58 60, 58 70 C58 79, 63 87, 71 92" />
         <path class="fine" d="M146 48 C156 52, 162 60, 162 70 C162 79, 157 87, 149 92" />
 
-        <!-- main seal -->
         <ellipse class="soft" cx="110" cy="56" rx="38" ry="26" />
         <ellipse class="fine" cx="110" cy="56" rx="50" ry="35" />
 
-        <!-- heraldic shield -->
         <path class="soft" d="M110 36
                               C118 41, 127 43, 135 44
                               C132 56, 130 66, 130 74
@@ -290,11 +296,9 @@
                               C90 66, 88 56, 85 44
                               C93 43, 102 41, 110 36 Z" />
 
-        <!-- subtle center emblem -->
         <path class="gold" d="M110 47 L115 57 L126 58 L118 65 L120 76 L110 70 L100 76 L102 65 L94 58 L105 57 Z" />
         <circle class="gold" cx="110" cy="61" r="3.5" />
 
-        <!-- lower flourish -->
         <path class="fine" d="M96 98 C100 102, 105 104, 110 104 C115 104, 120 102, 124 98" />
       </svg>
     </div>
@@ -312,7 +316,7 @@
       </p>
     </section>
 
-    <div class="footer">private archive · 2026</div>
+    <div class="footer">sealed for private use</div>
   </main>
 </body>
 </html>
